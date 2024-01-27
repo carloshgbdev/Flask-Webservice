@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatura Page</title>
+<style>
+  body, h2, p {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .sidebar {
+    background-color: #007bff;
+    padding: 20px;
+    color: white;
+    width: 250px;
+    height: 100%;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+  .header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 250px; /* Same as sidebar width */
+    height: 50px;
+    box-sizing: border-box;
+  }
+  .main-content {
+    flex-grow: 1;
+    padding-top: 50px; /* Same as header height */
+    overflow-y: auto;
+  }
+  .section {
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  .user-info, .billing-history, .contract-details, .form-section {
+    display: flex;
+    flex-direction: column;
+  }
+  .user-info img, .contract-details img {
+    border-radius: 50%;
+    align-self: center;
+    margin-bottom: 10px;
+  }
+  .user-info .user-details, .contract-details .contract-text {
+    align-self: center;
+    text-align: center;
+  }
+  .user-details h2, .billing-history h2, .contract-details h2 {
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  .form-section {
+    padding: 20px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  .form-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-section input[type="text"], .form-section select {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  .form-section input[type="submit"] {
+    width: 95%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .form-section input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  /* Add custom scrollbar for content */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <p>Logo</p>
+    <p>Home</p>
+    <p>Clientes</p>
+    <p>Settings</p>
+    </div>
+
+<div class="header">
+  <p>Banner da Empresa</p>
+</div>
+
+<div class="main-content">
+  <div class="section user-info">
+    <img src="user_placeholder.png" alt="User Image" style="width: 100px; height: 100px;">
+    <div class="user-details">
+        <h2>Fulano Silva</h2>
+        <p>CPF: 123.456.789-00</p>
+        <p>Goiânia, GO</p>
+        <p>Contato: 77 98765-4321</p>
+        <p>Email: silva.fulano@example.com</p>
+        <p>Última fatura: <strong>R$ XXX,XX</strong></p>
+    </div>
+  </div>
+
+  <div class="section billing-history">
+    <h2>Histórico de Fatura</h2>
+    <!-- Placeholder for the billing history graph -->
+    <p>Billing History Graph</p>
+  </div>
+
+  <div class="section contract-details">
+    <img src="company_logo_placeholder.png" alt="Company Logo" style="width: 50px; height: 50px;">
+    <div class="contract-text">
+        <h2>Contrato Bilateral</h2>
+        <p>Nome empresa</p>
+        <p>Tarifa de Energia (do mês atual): <strong>R$ XX,XX</strong></p>
+        <p>Data de início do contrato: 00/00/2000</p>
+        <p>Data do fim do contrato: 00/00/2001</p>
+        <p>Termo do contrato 1</p>
+        <p>Termo do contrato 2</p>
+        <p>Termo do contrato n</p>
+    </div>
+  </div>
+  <div class="section distribution-details">
+    <div class="logo-text-container">
+        <img src="company_logo_placeholder.png" alt="Distribution Company Logo" style="width: 50px; height: 50px;">
+        <div>
+            <h2>Empresa Distribuidora/Transmissora</h2>
+            <p>Nome empresa</p>
+            <p>TUSD/TUST (Tarifa de Uso do Sistema de Distribuição/Transmissão):</p>
+            <p class="price">R$ XX,XX</p>
+        </div>
+    </div>
+   </div>
+
+  <!-- Include other sections as needed -->
+
+  <div class="form-section">
+    <form action="YOUR_SERVER_ENDPOINT" method="POST">
+      <!-- Input fields and other form elements go here -->
+      <input type="text" placeholder="Field 1" name="field1" style="width: 90%;">
+      <!-- Include other fields -->
+      <input type="submit" value="Submit" style="width: 95%;">
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

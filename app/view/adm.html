@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administrator Access - Clients</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eaeaea;
+    margin: 0;
+    padding: 0;
+  }
+  .header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+  }
+  .client-list {
+    width: 65%;
+    margin-right: 10px;
+  }
+  .add-company-form {
+    width: 30%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .add-company-form h2 {
+    margin-top: 0;
+  }
+  input, button {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #4cae4c;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  .search-area {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>ACESSO DE ADMINISTRADOR [CLIENTES]</h1>
+</header>
+
+<div class="search-container">
+  <div class="client-list">
+    <div class="search-area">
+      <h2>Pesquisa CNPJ/Nome</h2>
+      <form>
+        <input type="text" placeholder="Digite o CNPJ ou Nome">
+        <button type="submit">Pesquisar</button>
+      </form>
+    </div>
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th>Consumo</th>
+        <th>Produção</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>Cliente A</td>
+        <td>Tipo 1</td>
+        <td>1000</td>
+        <td>500</td>
+        <td>Ativo</td>
+      </tr>
+      <!-- Repeat the above row for more clients -->
+    </table>
+  </div>
+  <div class="add-company-form">
+    <h2>+ Adicionar Empresa</h2>
+    <form>
+      <input type="text" name="nome" placeholder="Nome">
+      <input type="text" name="tipo" placeholder="Tipo">
+      <input type="text" name="rua" placeholder="Rua">
+      <input type="text" name="cep" placeholder="CEP">
+      <input type="text" name="complemento" placeholder="Complemento">
+      <input type="text" name="cnpj" placeholder="CNPJ">
+      <button type="submit">Adicionar</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Is-Ion</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eaeaea;
+    margin: 0;
+    padding: 0;
+  }
+  .header {
+    background-color: #fff;
+    padding: 20px;
+    text-align: right;
+  }
+  .header a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
+  .login-form {
+    max-width: 400px;
+    margin-right: 50px;
+  }
+  .login-form h2 {
+    margin-bottom: 10px;
+  }
+  .login-form input,
+  .login-form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .login-form button {
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+  }
+  .login-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  .login-form .remember {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .login-form .remember input {
+    margin-right: 5px;
+  }
+  .login-form .remember label {
+    margin: 0;
+  }
+  .login-placeholder {
+    width: 400px;
+    height: 300px;
+    background-color: #ddd;
+  }
+  .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    font-size: 0.8em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .footer .footer-section {
+    margin: 10px;
+    flex: 1;
+    min-width: 150px;
+  }
+  
+  .footer .footer-section h3 {
+    color: #fff;
+  }
+  
+  .footer-address,
+  .social-links,
+  .support-links {
+    list-style-type: none;
+  }
+  
+  .footer-address li,
+  .social-links li,
+  .support-links li {
+    margin-bottom: 5px;
+  }
+  
+  .footer-address li {
+    color: #ddd;
+  }
+  
+  .footer-address li a,
+  .social-links li a,
+  .support-links li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-address li a:hover,
+  .social-links li a:hover,
+  .support-links li a:hover {
+    color: #aaa;
+  }
+  
+  .footer .legal {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="#">Sobre nós</a>
+  <a href="#">Entre em contato</a>
+  <a href="#">Entrar</a>
+</div>
+
+<div class="login-container">
+  <div class="login-form">
+    <h2>Não tem uma conta? Entre em contato conosco!</h2>
+    <form action="your-server-endpoint" method="POST">
+      <label for="cnpj">CNPJ</label>
+      <input type="text" id="cnpj" name="cnpj" required>
+
+      <label for="access-key">Chave de Acesso</label>
+      <input type="password" id="access-key" name="access_key" required>
+
+      <div class="remember">
+        <input type="checkbox" id="remember-me" name="remember_me">
+        <label for="remember-me">Lembrar-se</label>
+      </div>
+
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <div class="login-placeholder"></div>
+</div>
+
+<div class="footer">
+    <div class="footer-section">
+      <h3>Endereço</h3>
+      <ul class="footer-address">
+        <li>CEP 00000-000, Bairro tal, Rua tal, Quadra tal, Lote tal, complemento tal</li>
+        <li>Localização: google maps no refúgio</li>
+        <li>Telefone: 23 2323 2323</li>
+        <li>Email: nome@empresa.com</li>
+        <li>CNPJ: 12.345.678/0001-22</li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Redes Sociais</h3>
+      <ul class="social-links">
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">WhatsApp</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Suporte e Atendimento</h3>
+      <ul class="support-links">
+        <li><a href="#">Atendimento</a></li>
+        <li><a href="#">Entre em contato</a></li>
+        <li><a href="#">Trabalhe Conosco</a></li>
+      </ul>
+    </div>
+    
+    <div class="legal">
+      <p>&copy; 2024 Is-Ion. Todos os direitos reservados.</p>
+    </div>
+  </div>
+
+</body>
+</html>

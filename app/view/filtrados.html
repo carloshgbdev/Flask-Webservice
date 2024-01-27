@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard de Consumo - Empresa</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  .sidebar {
+    background-color: #2c3e50; /* Dark blue */
+    color: white;
+    padding: 15px;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+  }
+
+  .sidebar h2, .sidebar ul {
+    margin-bottom: 20px;
+  }
+
+  .sidebar ul li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .sidebar ul li img {
+    margin-right: 10px;
+  }
+
+  .main-content {
+    margin-left: 250px;
+    padding: 20px;
+  }
+
+  .banner {
+    background-color: #ecf0f1; /* Light gray */
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .graph-container {
+    width: calc(100% - 300px); /* Adjust width based on sidebar and filter form */
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .graph-container img {
+    width: 100%;
+    height: auto; /* Adjust height as necessary, or set a fixed height */
+    background-color: #bdc3c7; /* Placeholder color */
+  }
+
+  .filter-form {
+    width: 280px;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #ecf0f1;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  }
+
+  .filter-form h3 {
+    margin-bottom: 10px;
+  }
+
+  .filter-form input, .filter-form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .filter-form button {
+    background-color: #2ecc71; /* Green */
+    color: white;
+    border: none;
+  }
+
+  .filter-form button:hover {
+    background-color: #27ae60; /* Darker green */
+  }
+
+  .settings-icon {
+    float: right;
+    cursor: pointer;
+  }
+
+  .settings-icon:hover {
+    color: #95a5a6; /* Light gray hover effect */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+
+    .sidebar-icon {
+    margin-right: 10px;
+  }
+
+    .main-content, .graph-container {
+      margin-left: 0;
+    }
+
+    .graph-container {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .filter-form {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Logo</h2>
+    <ul>
+        <li><img src="icon-home.png" alt="Home" class="sidebar-icon"> Home</li>
+        <li class="active"><img src="icon-clients.png" alt="Clientes" class="sidebar-icon"></li>
+        <li><img src="icon-settings.png" alt="Settings" class="sidebar-icon"></li>
+        <li><img src="icon-report.png" alt="Relatórios" class="sidebar-icon"></li>
+        <li><img src="icon-help.png" alt="Ajuda" class="sidebar-icon"></li>
+        <!-- More sidebar items can be added here -->
+    </ul>
+    </div>
+
+<div class="main-content">
+  <div class="banner">
+    Banner da Empresa
+  </div>
+  
+  <div class="content-header">
+    <h1>Gráfico de Consumo</h1>
+    <div class="settings-icon">&#9881;</div>
+  </div>
+
+  <div class="graph-container">
+    <!-- This would be replaced with an actual graph, e.g. using Chart.js or similar -->
+    <img src="graph-placeholder.png" alt="Gráfico de Consumo">
+  </div>
+
+  <div class="filter-form">
+    <h3>Fatura</h3>
+    <form action="filter-endpoint" method="POST">
+      <input type="text" name="invoice" placeholder="Fatura: 999">
+      <input type="text" name="consumption_peak" placeholder="Consumo Ponta(kWh): 999">
+      <input type="text" name="consumption_off_peak" placeholder="Consumo Fora Ponta(kWh): 999">
+      <input type="text" name="demand_peak" placeholder="Demanda Ponta(kW): 999">
+      <input type="text" name="demand_off_peak" placeholder="Demanda Fora Ponta(kW): 999">
+      <input type="date" name="start_date">
+      <input type="date" name="end_date">
+      <!-- More inputs can be added as needed -->
+      <button type="submit">Aplicar Filtros</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
