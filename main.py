@@ -7,43 +7,43 @@ def home():
     return render_template('homepage.html')
 
 @app.route('/adm')
-def sobre_nos():
+def adm():
     return render_template('adm.html')
 
 @app.route('/sobre-nos')
 def sobre_nos():
-    return render_template('sobrenos.html')
+    return render_template('view/sobrenos.html')
 
 @app.route('/contato')
-def sobre_nos():
+def contato():
     return render_template('contato.html')
 
 @app.route('/login')
-def sobre_nos():
+def login():
     return render_template('login.html')
 
 @app.route('/paginacliente')
-def sobre_nos():
+def paginacliente():
     return render_template('paginacliente.html')
 
 @app.route('/paginacliente/clienteconfig')
-def sobre_nos():
+def clienteconfig():
     return render_template('clienteconfig.html')
 
 @app.route('/paginacliente/adicaoclientes')
-def sobre_nos():
+def adicaoclientes():
     return render_template('adicaoclientes.html')
 
 @app.route('/paginacliente/filtroclientes')
-def sobre_nos():
+def filtroclientes():
     return render_template('filtroclientes.html')
 
 @app.route('/paginacliente/filtroclientes/filtrados')
-def sobre_nos():
+def filtrados():
     return render_template('filtrados.html')
 
 @app.route('/paginacliente/filtroclientes/fatura')
-def sobre_nos():
+def fatura():
     return render_template('fatura.html')
 
 if __name__ == '__main__':
