@@ -6,5 +6,9 @@ app = Flask(__name__, template_folder='view')
 def home():
     return render_template('homepage.html')
 
+@app.route('/sobre-nos')
+def sobre_nos():
+    return render_template('sobrenos.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
