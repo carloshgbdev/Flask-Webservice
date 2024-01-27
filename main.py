@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder='view')
 def home():
     return render_template('homepage.html')
 
-@app.route('/adm', methods=['GET'])
+@app.route('/adm', methods=['GET', 'POST'])
 def adm():
     return render_template('adm.html')
 
@@ -14,7 +14,7 @@ def adm():
 def sobre_nos():
     return render_template('sobrenos.html')
 
-@app.route('/contato', methods=['GET'])
+@app.route('/contato', methods=['GET', 'POST'])
 def contato():
     return render_template('contato.html')
 
@@ -26,11 +26,11 @@ def login():
 def paginacliente():
     return render_template('paginacliente.html')
 
-@app.route('/paginacliente/clienteconfig', methods=['GET'])
+@app.route('/paginacliente/clienteconfig', methods=['GET', 'POST'])
 def clienteconfig():
     return render_template('clienteconfig.html')
 
-@app.route('/paginacliente/adicaoclientes', methods=['GET'])
+@app.route('/paginacliente/adicaoclientes', methods=['GET', 'POST'])
 def adicaoclientes():
     return render_template('adicaoclientes.html')
 
