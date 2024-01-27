@@ -148,13 +148,15 @@
 <body>
 
 <div class="header">
-    <h1>Is - Ion</h1>
-    <nav>
-        <a href="#">Sobre nós</a>
-        <a href="#">Entre em contato</a>
-        <a href="#">Entrar</a>
-    </nav>
-    </div>
+  <div class="header-left">
+    <h1><a href="{{ url_for('home') }}">Is - Ion</a></h1>
+  </div>
+  <div class="header-right">
+    <a href="{{ url_for('sobre_nos') }}">Sobre nós</a>
+    <a href="{{ url_for('contato') }}">Entre em contato</a>
+    <a href="{{ url_for('login') }}">Entrar</a>
+  </div>
+</div>
 
 <div class="main-content">
   <div class="form-container">

@@ -12,7 +12,7 @@ def adm():
 
 @app.route('/sobre-nos')
 def sobre_nos():
-    return render_template('view/sobrenos.html')
+    return render_template('sobrenos.html')
 
 @app.route('/contato')
 def contato():
