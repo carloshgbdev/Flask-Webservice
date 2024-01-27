@@ -160,14 +160,3 @@ cython_debug/
 #.idea/
 
 webservices_dependences/
-webservice_dependences/bin/activate
-webservice_dependences/bin/Activate.ps1
-webservice_dependences/bin/pip.exe
-webservice_dependences/bin/pip3.11.exe
-webservice_dependences/bin/pip3.exe
-webservice_dependences/bin/python.exe
-webservice_dependences/bin/python3.11.exe
-webservice_dependences/bin/python3.exe
-webservice_dependences/bin/python3w.exe
-webservice_dependences/bin/pythonw.exe
-webservice_dependences/pyvenv.cfg
