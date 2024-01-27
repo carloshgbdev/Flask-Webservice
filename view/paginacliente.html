@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Empresa</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+
+  .sidebar {
+    background-color: #007bff; /* Bootstrap primary blue */
+    color: white;
+    padding: 15px;
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+  }
+
+  .sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sidebar ul li {
+    padding: 10px 0;
+    cursor: pointer;
+  }
+
+  .sidebar ul li:hover {
+    background-color: #0056b3; /* A darker blue for hover effect */
+  }
+
+  .main {
+    margin-left: 250px;
+    padding: 15px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa; /* Light grey background */
+    box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Slight shadow for depth */
+  }
+
+  .header .banner {
+    flex-grow: 2;
+    text-align: center;
+  }
+
+  .content {
+    margin-top: 20px;
+  }
+
+  .data-block {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .data-block img {
+    width: 100%;
+    height: auto;
+    background-color: #ddd; /* Placeholder color */
+  }
+
+  .settings-icon {
+    float: right;
+    cursor: pointer;
+  }
+
+  .settings-icon:hover {
+    color: #0056b3;
+  }
+
+  /* Add responsiveness */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+
+    .main {
+      margin-left: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>Logo</h2>
+  <ul>
+    <li>Home</li>
+    <li>Clientes</li>
+    <li>Settings</li>
+  </ul>
+</div>
+
+<div class="main">
+  <div class="header">
+    <div>Logo</div>
+    <div class="banner">Banner da Empresa</div>
+    <div class="settings-icon">&#9881;</div> <!-- This is a Unicode gear icon -->
+  </div>
+
+  <div class="content">
+    <div class="data-block">
+      <h1>Home</h1>
+      <p>Numero de Clientes: X clientes</p>
+      <p>Produção: Y MWh</p>
+      <p>Consumo: Z MWh</p>
+      <p>Diferença: (Y-Z) MWh</p>
+      <p>Faturamento: $A</p>
+      <p>Custo: $B</p>
+      <p>Valor Total: $(A-B)</p>
+    </div>
+    <div class="data-block">
+      <h2>Mapa da Distribuição</h2>
+      <img src="path-to-your-map-image.jpg" alt="Mapa da Distribuição" />
+    </div>
+    <div class="data-block">
+      <h2>Gráfico de Produção e Consumo</h2>
+      <img src="path-to-your-graph-image.jpg" alt="Gráfico de Produção e Consumo" />
+      <p>Imagem ilustrativa</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

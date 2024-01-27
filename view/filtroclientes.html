@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clientes - Empresa</title>
+<style>
+  /* Previous styles... */
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+
+  .sidebar {
+    background-color: #007bff; /* Bootstrap primary blue */
+    color: white;
+    padding: 15px;
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+  }
+
+  .sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sidebar ul li {
+    padding: 10px 0;
+    cursor: pointer;
+  }
+
+  .sidebar ul li:hover {
+    background-color: #0056b3; /* A darker blue for hover effect */
+  }
+
+  .main {
+    margin-left: 250px;
+    padding: 15px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa; /* Light grey background */
+    box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Slight shadow for depth */
+  }
+
+  .header .banner {
+    flex-grow: 2;
+    text-align: center;
+  }
+
+  .content {
+    margin-top: 20px;
+  }
+
+  .data-block {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .data-block img {
+    width: 100%;
+    height: auto;
+    background-color: #ddd; /* Placeholder color */
+  }
+
+  .settings-icon {
+    float: right;
+    cursor: pointer;
+  }
+
+  .settings-icon:hover {
+    color: #0056b3;
+  }
+  .content {
+    margin-left: 250px; /* Adjusted based on sidebar width */
+    padding: 20px;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .search-section, .filter-section {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .client-list {
+    list-style: none;
+  }
+
+  .client-item {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  }
+
+  .add-client-btn {
+    background-color: #28a745; /* Bootstrap success green */
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  .add-client-btn:hover {
+    background-color: #218838;
+  }
+  .filter-section {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+  }
+
+  .filter-group label {
+    margin-bottom: 5px;
+  }
+
+  .filter-group select {
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  /* Additional styles may be necessary */
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Logo</h2>
+    <ul>
+        <li>Home</li>
+        <li>Clientes</li>
+        <li class="active">Settings</li>
+    </ul>
+    </div>
+
+<div class="content">
+  <div class="page-header">
+    <h1>Clientes</h1>
+    <a href="#" class="add-client-btn">+ Adicionar Cliente</a>
+  </div>
+
+  <div class="search-section">
+    <form action="search-endpoint" method="POST">
+      <input type="search" name="search" placeholder="Pesquisa CPF/CNPJ/Nome">
+      <button type="submit">Pesquisar</button>
+    </form>
+  </div>
+
+  <div class="filter-section">
+    <form action="filter-endpoint" method="POST">
+      <div class="filter-group">
+        <label for="region">Filtro região</label>
+        <select id="region" name="region">
+          <option value="">Selecione uma região</option>
+          <!-- Add region options here -->
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="type">Filtro tipo</label>
+        <select id="type" name="type">
+          <option value="">Selecione um tipo</option>
+          <!-- Add type options here -->
+        </select>
+      </div>
+      <div class="filter-group">
+        <button type="submit">Aplicar Filtros</button>
+      </div>
+    </form>
+  </div>
+
+  <ul class="client-list">
+    <!-- This list would be dynamically generated. Here is a static example: -->
+    <li class="client-item">
+      <span><strong>Nome do Cliente</strong> - tipo</span>
+      <span>consumo</span>
+      <span>producao</span>
+      <span>status</span>
+    </li>
+    <!-- Repeat for each client -->
+  </ul>
+</div>
+
+</body>
+</html>

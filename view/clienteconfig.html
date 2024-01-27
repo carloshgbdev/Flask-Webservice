@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configurações - Empresa</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+
+  .sidebar {
+    background-color: #007bff; /* Bootstrap primary blue */
+    color: white;
+    padding: 15px;
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+  }
+
+  .sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sidebar ul li {
+    padding: 10px 0;
+    cursor: pointer;
+  }
+
+  .sidebar ul li:hover,
+  .sidebar ul li.active {
+    background-color: #0056b3; /* A darker blue for hover effect */
+  }
+
+  .main {
+    margin-left: 250px;
+    padding: 15px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa; /* Light grey background */
+    box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Slight shadow for depth */
+  }
+
+  .header .banner {
+    flex-grow: 2;
+    text-align: center;
+  }
+
+  .settings {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  }
+
+  .settings form > div {
+    margin-bottom: 15px;
+  }
+
+  .settings form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .settings form input[type="text"],
+  .settings form input[type="email"],
+  .settings form input[type="password"],
+  .settings form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+  }
+
+  .settings form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .settings form button:hover {
+    background-color: #0056b3;
+  }
+
+  .settings-icon {
+    cursor: pointer;
+  }
+
+  .settings-icon:hover {
+    color: #0056b3;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: #007bff;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #007bff;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>Logo</h2>
+  <ul>
+    <li>Home</li>
+    <li>Clientes</li>
+    <li class="active">Settings</li>
+  </ul>
+</div>
+
+<div class="main">
+    <div class="header">
+      <div>Logo</div>
+      <div class="banner">Banner da Empresa</div>
+      <div class="settings-icon">&#9881;</div> <!-- This is a Unicode gear icon -->
+    </div>
+  
+    <div class="settings">
+      <h1>Settings</h1>
+      <form action="your-endpoint-here" method="POST">
+        <!-- Personal Information -->
+        <div>
+          <label for="name">Nome:</label>
+          <input type="text" id="name" name="name" placeholder="<nome>">
+        </div>
+        <div>
+          <label for="cnpj">CNPJ:</label>
+          <input type="text" id="cnpj" name="cnpj" placeholder="<cnpj do nosso cliente>">
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="<email do cliente>">
+        </div>
+        <div>
+          <label for="date">Data:</label>
+          <input type="text" id="date" name="date" placeholder="<inicio do clientes>">
+        </div>
+  
+        <!-- Address -->
+        <h2>Endereço:</h2>
+        <div>
+          <label for="country">País:</label>
+          <input type="text" id="country" name="country" placeholder="<País do cliente>">
+        </div>
+        <div>
+          <label for="cep">CEP:</label>
+          <input type="text" id="cep" name="cep" placeholder="<CEP do cliente>">
+        </div>
+        <div>
+          <label for="state">Estado:</label>
+          <input type="text" id="state" name="state" placeholder="<Estado do cliente>">
+        </div>
+        <div>
+          <label for="city">Cidade:</label>
+          <input type="text" id="city" name="city" placeholder="<Cidade do cliente>">
+        </div>
+        <div>
+          <label for="neighborhood">Bairro:</label>
+          <input type="text" id="neighborhood" name="neighborhood" placeholder="<Bairro do cliente>">
+        </div>
+        <div>
+          <label for="street">Rua:</label>
+          <input type="text" id="street" name="street" placeholder="<Rua do cliente>">
+        </div>
+        <div>
+          <label for="complement">Complemento:</label>
+          <input type="text" id="complement" name="complement" placeholder="<complemento do cliente>">
+        </div>
+  
+        <!-- Password Change -->
+        <h2>Alterar senha</h2>
+        <div>
+          <label for="new-password">Senha nova:</label>
+          <input type="password" id="new-password" name="new_password">
+        </div>
+        <div>
+          <label for="confirm-password">Confirmar senha:</label>
+          <input type="password" id="confirm-password" name="confirm_password">
+        </div>
+  
+        <!-- Additional Settings -->
+        <h2>Additional Settings</h2>
+        <div>
+          <label for="two-factor">Autentificação de Dois fatores</label>
+          <label class="switch">
+            <input type="checkbox" id="two-factor" name="two_factor">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div>
+          <label for="theme">Tema</label>
+          <!-- Add theme selection options here if needed -->
+        </div>
+        <div>
+          <button type="submit">Salvar</button>
+        </div>
+        <div>
+          <a href="#">Suporte e Privacidade</a>
+        </div>
+        <div>
+          <a href="#">Log out</a>
+        </div>
+        <div>
+          <a href="#">Deletar conta</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

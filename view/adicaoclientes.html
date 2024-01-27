@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Addition Form</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  .sidebar {
+    width: 200px;
+    background-color: #007bff;
+    padding: 10px;
+    color: white;
+    height: 100vh;
+  }
+  .sidebar p {
+    margin: 16px 0;
+  }
+  .main-content {
+    flex-grow: 1;
+    background-color: #f4f4f4;
+  }
+  .header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  .container {
+    padding: 20px;
+  }
+  .form-title {
+    color: #007bff;
+    margin-bottom: 30px;
+  }
+  .form-field {
+    margin-bottom: 10px;
+  }
+  .form-field label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  .form-field input[type="text"], .form-field select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+  }
+  .highlight {
+    background-color: #dcdcff;
+  }
+  .form-field input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  .form-field input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <p>Logo</p>
+  <p>Home</p>
+  <p>Clientes</p>
+  <p>Settings</p>
+</div>
+
+<div class="main-content">
+  <div class="header">
+    <p>Banner da Empresa</p>
+  </div>
+  <div class="container">
+    <h2 class="form-title">Adição de Cliente</h2>
+    <form action="YOUR_SERVER_ENDPOINT" method="POST">
+      <div class="form-field">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-field">
+        <label for="cpf_cnpj">CPF/CNPJ:</label>
+        <input type="text" id="cpf_cnpj" name="cpf_cnpj" required>
+      </div>
+      <div class="form-field">
+        <label for="type">Tipo:</label>
+        <select id="type" name="type">
+          <option value="individual">Individual</option>
+          <option value="business">Business</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep">
+      </div>
+      <div class="form-field">
+        <label for="address">Endereço:</label>
+        <input type="text" id="address" name="address">
+      </div>
+      <div class="form-field">
+        <label for="start_date">Data de Início:</label>
+        <input type="date" id="start_date" name="start_date">
+      </div>
+      <div class="form-field">
+        <label for="phone">Telefone:</label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+      <div class="form-field highlight">
+        <label for="billing_value">Valor de fatura:</label>
+        <input type="text" id="billing_value" name="billing_value">
+      </div>
+      <div class="form-field highlight">
+        <label for="duration">Duração:</label>
+        <input type="text" id="duration" name="duration">
+      </div>
+      <div class="form-field highlight">
+        <label for="type_service">Tipo:</label>
+        <input type="text" id="type_service" name="type_service">
+      </div>
+      <div class="form-field">
+        <input type="submit" value="Salvar">
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
