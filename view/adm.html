@@ -99,25 +99,27 @@
         <th>Produção</th>
         <th>Status</th>
       </tr>
-      <tr>
-        <td>Cliente A</td>
-        <td>Tipo 1</td>
-        <td>1000</td>
-        <td>500</td>
-        <td>Ativo</td>
-      </tr>
-      <!-- Repeat the above row for more clients -->
+      {% for empresa in empresas %}
+          <tr>
+              <td>{{ empresa.nome }}</td>
+              <td>{{ empresa.tipo }}</td>
+              <td>{{ empresa.producao }}</td>
+              <td>{{ empresa.consumo }}</td>
+              <td>{{ empresa.status }}</td>
+          </tr>
+      {% endfor %}
     </table>
   </div>
   <div class="add-company-form">
     <h2>+ Adicionar Empresa</h2>
-    <form action = "{{ url_for('adm') }}" method="POST">
-      <input type="text" name="nome" placeholder="Nome">
-      <input type="text" name="tipo" placeholder="Tipo">
-      <input type="text" name="rua" placeholder="Rua">
-      <input type="text" name="cep" placeholder="CEP">
-      <input type="text" name="complemento" placeholder="Complemento">
-      <input type="text" name="cnpj" placeholder="CNPJ">
+    {{ msg|safe }}
+    <form action = "/adm/adiciona-empresa" method="POST">
+      <input type="text" name="nome" placeholder="Nome" required>
+      <input type="text" name="tipo" placeholder="Tipo" required>
+      <input type="text" name="rua" placeholder="Rua" required>
+      <input type="text" name="cep" placeholder="CEP" required>
+      <input type="text" name="complemento" placeholder="Complemento" required>
+      <input type="text" name="cnpj" placeholder="CNPJ" required>
       <button type="submit">Adicionar</button>
     </form>
   </div>
