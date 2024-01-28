@@ -86,7 +86,7 @@
   <div class="client-list">
     <div class="search-area">
       <h2>Pesquisa CNPJ/Nome</h2>
-      <form>
+      <form action = "{{ url_for('adm') }}" method="POST">
         <input type="text" placeholder="Digite o CNPJ ou Nome">
         <button type="submit">Pesquisar</button>
       </form>
@@ -111,7 +111,7 @@
   </div>
   <div class="add-company-form">
     <h2>+ Adicionar Empresa</h2>
-    <form>
+    <form action = "{{ url_for('adm') }}" method="POST">
       <input type="text" name="nome" placeholder="Nome">
       <input type="text" name="tipo" placeholder="Tipo">
       <input type="text" name="rua" placeholder="Rua">
