@@ -20,6 +20,26 @@ def contato():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    cookies = request.cookies
+    autenticado = cookies.get('autenticado')
+    
+    if (autenticado == 'true'):
+        cnpj = cookies.get('cnpj')
+        key = cookies.get('key')
+        
+        if (cnpj == 'admin' and key == 'admin'):
+            resp = make_response(render_template('adm.html',
+                                                 var1=cnpj,
+                                                 var2=key))
+            
+            return resp
+        else:
+            resp = make_response(render_template('paginacliente.html',
+                                                 var1=cnpj,
+                                                 var2=key))
+            
+            return resp
+        
     return render_template('login.html')
 
 @app.route('/paginacliente', methods=['GET'])
