@@ -42,13 +42,19 @@
     background-color: #0056b3; /* A darker blue for hover effect */
   }
   .main-content {
-    flex-grow: 1;
-    background-color: #f4f4f4;
+    margin-left: 250px;
+    padding: 15px;
   }
   .header {
-    background-color: #333;
-    color: white;
-    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa; /* Light grey background */
+    box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Slight shadow for depth */
+  }
+  .header .banner {
+    flex-grow: 2;
     text-align: center;
   }
   .container {
@@ -66,7 +72,7 @@
     margin-bottom: 5px;
   }
   .form-field input[type="text"], .form-field select {
-    width: calc(100% - 22px);
+    width: calc(100% + 200px);
     padding: 10px;
     margin-bottom: 5px;
     border: 1px solid #ccc;
@@ -100,11 +106,12 @@
 
 <div class="main-content">
   <div class="header">
-    <p>Banner da Empresa</p>
+    <div class="banner">Banner da Empresa</div>
   </div>
   <div class="container">
     <h2 class="form-title">Adição de Cliente</h2>
-    <form action="/adicaoclientes/cliente" method="POST">
+    {{ msg | safe}}
+    <form action="/pagina-cliente//adicao-clientes/cliente" method="POST">
       <div class="form-field">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" required>
@@ -115,9 +122,10 @@
       </div>
       <div class="form-field">
         <label for="type">Tipo:</label>
-        <select id="type" name="type">
-          <option value="individual">Individual</option>
-          <option value="business">Business</option>
+        <select id="type" name="type" required>
+          <option value="individual">Residencial</option>
+          <option value="business">Comercial</option>
+          <option value="business">Industrial</option>
         </select>
       </div>
       <div class="form-field">
@@ -125,28 +133,24 @@
         <input type="text" id="cep" name="cep">
       </div>
       <div class="form-field">
-        <label for="address">Endereço:</label>
-        <input type="text" id="address" name="address">
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua" name="rua" required>
       </div>
       <div class="form-field">
-        <label for="start_date">Data de Início:</label>
-        <input type="date" id="start_date" name="start_date">
+        <label for="complemento">Complemento:</label>
+        <input type="text" id="complemento" name="complemento">
       </div>
       <div class="form-field">
-        <label for="phone">Telefone:</label>
-        <input type="tel" id="phone" name="phone">
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone">
       </div>
-      <div class="form-field highlight">
-        <label for="billing_value">Valor de fatura:</label>
-        <input type="text" id="billing_value" name="billing_value">
+      <div class="form-field">
+        <label for="consumo_mensal">Consumo Mensal:</label>
+        <input type="text" id="consumo_mensal" name="consumo_mensal">
       </div>
-      <div class="form-field highlight">
-        <label for="duration">Duração:</label>
-        <input type="text" id="duration" name="duration">
-      </div>
-      <div class="form-field highlight">
-        <label for="type_service">Tipo:</label>
-        <input type="text" id="type_service" name="type_service">
+      <div class="form-field">
+        <label for="energia_alocada">Energia Alocada:</label>
+        <input type="text" id="energia_alocada" name="energia_alocada">
       </div>
       <div class="form-field">
         <input type="submit" value="Salvar">
