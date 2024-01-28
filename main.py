@@ -1,4 +1,5 @@
 import firebase_admin
+import random
 
 from flask import Flask, request, render_template, make_response 
 from firebase_admin import credentials, firestore
@@ -15,8 +16,12 @@ def adicionar_empresa_cliente(nome, tipo, rua, cep, complemento, cnpj, producao,
     # O Firestore criará automaticamente um ID único para cada novo documento
     empresa_cliente_ref = empresas_clientes_ref.document()
     
+    # Cria uma chave de acesso aleatória
+    key = random.randint(1, 1000)
+    
     # Definir o documento com os dados da empresa
     empresa_cliente_ref.set({
+        'acess': key,
         'nome': nome,
         'tipo': tipo,
         'rua': rua,
@@ -28,8 +33,8 @@ def adicionar_empresa_cliente(nome, tipo, rua, cep, complemento, cnpj, producao,
         'status': 'Ativo'
     })
 
-def busca_empresas_clientes():
-    empresas_clientes_ref = db.collection('Empresas Clientes')
+def busca_colecao(colecao):
+    empresas_clientes_ref = db.collection(colecao)
     docs = empresas_clientes_ref.stream()
     
     empresas_clientes = []
@@ -53,8 +58,7 @@ def login():
         key = cookies.get('key')
         
         if (cnpj == 'admin' and key == 'admin'):
-            empresas = busca_empresas_clientes()
-            resp = make_response(adm(empresas=empresas))
+            resp = make_response(adm())
             
             return resp
         else:
@@ -78,8 +82,7 @@ def autenticacao():
         remember = "off"
     
     if (cnpj == 'admin' and key == 'admin'):
-        empresas = busca_empresas_clientes()
-        resp = make_response(adm(empresas=empresas))
+        resp = make_response(adm())
         
         if (remember == 'on'):
             resp.set_cookie('cnpj', cnpj, max_age=30)
@@ -88,10 +91,27 @@ def autenticacao():
         
         return resp
     else:
-        return render_template('login.html', msg_err_autenticacao='Erro na autenticação!')
+        try:
+            empresas = busca_colecao('Empresas Clientes')
+            
+            for empresa in empresas:
+                if (cnpj == empresa['cnpj'] and key == empresa['acess']):
+                    if (remember == 'on'):
+                        resp.set_cookie('cnpj', cnpj, max_age=30)
+                        resp.set_cookie('key', key, max_age=30)
+                        resp.set_cookie('autenticado', 'true', max_age=30)
+                    
+                    resp = make_response(render_template('paginacliente.html', acess=cnpj, key=key))
+                    return resp
+                
+                return render_template('login.html', msg_err_autenticacao='CNPJ ou chave de acesso incorreta!')
+        except:
+            return render_template('login.html', msg_err_autenticacao='Erro na autenticação!')
     
 @app.route('/adm', methods=['GET', 'POST'])
-def adm(empresas, msg=None, acess='admin', key='admin'):
+def adm(msg=None, acess='admin', key='admin'):
+    empresas = busca_colecao('Empresas Clientes')
+    
     if (msg == None):
         return render_template('adm.html', empresas=empresas, acess=acess, key=key)
     else:
@@ -112,15 +132,11 @@ def adiciona_empresa_cliente():
                                 complemento=complemento, cnpj=cnpj, 
                                 producao='N/E', consumo='N/E')
         
-        empresas = busca_empresas_clientes()
-        resp = make_response(adm(empresas=empresas, 
-                                 msg="<p style=\"color: green\">Cliente adicionado com sucesso!</p>"))
+        resp = make_response(adm(msg="<p style=\"color: green\">Cliente adicionado com sucesso!</p>"))
         
         return resp
     except:
-        empresas = busca_empresas_clientes()
-        return adm(empresas=empresas,
-                   msg="<p style=\"color: red\">Erro ao adicionar o cliente</p>")
+        return adm(msg="<p style=\"color: red\">Erro ao adicionar o cliente</p>")
 
 @app.route('/sobre-nos', methods=['GET'])
 def sobre_nos():
