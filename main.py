@@ -58,7 +58,12 @@ def autenticacao():
         remember = "off"
     
     if (cnpj == 'admin' and key == 'admin'):
-        resp = make_response(render_template('adm.html', var1=cnpj, var2=key, var3=remember))
+        resp = make_response(render_template('adm.html', var1=cnpj, var2=key))
+        
+        if (remember == 'on'):
+            resp.set_cookie('cnpj', cnpj, max_age=30)
+            resp.set_cookie('key', key, max_age=30)
+            resp.set_cookie('autenticado', 'true', max_age=30)
         
         return resp
     else:
