@@ -46,5 +46,18 @@ def filtrados():
 def fatura():
     return render_template('fatura.html')
 
+@app.route('/login/autenticacao', methods=['POST'])
+def autenticacao():
+    cnpj = request.form['cnpj']
+    key = request.form['key']
+    remember = request.form['remember']
+    
+    if (cnpj == 'admin' and key == 'admin'):
+        resp = make_response(render_template('adm.html', var1=cnpj, var2=key, var3=remember))
+        
+        return resp
+    else:
+        return render_template('login.html', msg_err_autenticacao='Erro na autenticação.')
+    
 if __name__ == '__main__':
     app.run(debug=True)

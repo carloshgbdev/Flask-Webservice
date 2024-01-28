@@ -147,16 +147,16 @@
 <div class="login-container">
   <div class="login-form">
     <h2>Não tem uma conta? Entre em contato conosco!</h2>
-    <form action="your-server-endpoint" method="POST">
+    <form action="/login/autenticacao" method="POST">
       <label for="cnpj">CNPJ</label>
       <input type="text" id="cnpj" name="cnpj" required>
 
-      <label for="access-key">Chave de Acesso</label>
-      <input type="password" id="access-key" name="access_key" required>
+      <label for="key">Chave de Acesso</label>
+      <input type="password" id="key" name="key" required>
 
       <div class="remember">
-        <input type="checkbox" id="remember-me" name="remember_me">
-        <label for="remember-me">Lembrar-se</label>
+        <input type="checkbox" id="remember" name="remember">
+        <label for="remember">Lembrar-se</label>
       </div>
 
       <button type="submit">Entrar</button>
