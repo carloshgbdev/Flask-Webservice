@@ -147,7 +147,7 @@
 <div class="login-container">
   <div class="login-form">
     <h2>Não tem uma conta? Entre em contato conosco!</h2>
-    <form action="your-server-endpoint" method="POST">
+    <form action="{{ url_for('login') }}" method="POST">
       <label for="cnpj">CNPJ</label>
       <input type="text" id="cnpj" name="cnpj" required>
 
