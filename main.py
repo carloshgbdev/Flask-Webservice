@@ -50,7 +50,12 @@ def fatura():
 def autenticacao():
     cnpj = request.form['cnpj']
     key = request.form['key']
-    remember = request.form['remember']
+    remember = "off"
+    
+    try:
+        remember = request.form['remember']
+    except:
+        remember = "off"
     
     if (cnpj == 'admin' and key == 'admin'):
         resp = make_response(render_template('adm.html', var1=cnpj, var2=key, var3=remember))
