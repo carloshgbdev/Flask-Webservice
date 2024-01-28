@@ -105,6 +105,28 @@ def busca_primeiro_documento(colecao, campo, valor):
     
     return documentos[0]
 
+def obter_clientes_por_referencias(cnpj):
+    ref = busca_primeiro_documento('Empresas Clientes', 'cnpj', cnpj)
+    doc = ref.get()
+
+    # Lista para armazenar os dados dos clientes
+    lista_de_clientes = []
+
+    # Supõe-se que o campo que contém as referências é chamado 'clientes'
+    if 'clientes' in doc.to_dict():
+        # Obter o array de referências
+        referencias = doc.to_dict()['clientes']
+
+        # Iterar sobre as referências e obter cada documento de cliente
+        for ref_cliente in referencias:
+            # A referência é um objeto DocumentReference, então você pode chamar get() diretamente
+            doc_cliente = ref_cliente.get()
+            if doc_cliente.exists:
+                # Adicionar os dados do cliente à lista
+                lista_de_clientes.append(doc_cliente.to_dict())
+
+    return lista_de_clientes
+
 @app.route('/', methods=['GET'])
 def home():
     return render_template('homepage.html')
@@ -251,14 +273,14 @@ def registra_cliente():
     
     return resp
 
-
-
 @app.route('/pagina-cliente/filtro-clientes', methods=['GET'])
 def filtro_clientes(msg=None):
+    clientes = obter_clientes_por_referencias(session.get('cnpj'))
+    
     if (msg == None):
-        return render_template('filtroclientes.html')
+        return render_template('filtroclientes.html', clientes=clientes)
     else:
-        return render_template('filtroclientes.html', msg=msg)
+        return render_template('filtroclientes.html', clientes=clientes, msg=msg)
 
 @app.route('/pagina-cliente/filtro-clientes/filtrados', methods=['GET'])
 def filtrados():

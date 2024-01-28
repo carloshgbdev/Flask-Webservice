@@ -147,6 +147,23 @@
     margin-bottom: 10px;
   }
 
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
   /* Additional styles may be necessary */
 </style>
 </head>
@@ -197,14 +214,23 @@
   </div>
 
   <ul class="client-list">
-    <!-- This list would be dynamically generated. Here is a static example: -->
-    <li class="client-item">
-      <span><strong>Nome do Cliente</strong> - tipo</span>
-      <span>consumo</span>
-      <span>producao</span>
-      <span>status</span>
-    </li>
-    <!-- Repeat for each client -->
+    <table>
+      <tr>
+        <th><strong>Nome do Cliente</strong> - tipo</th>
+        <th>consumo</th>
+        <th>producao</th>
+        <th>status</th>
+      </tr>
+      {% for cliente in clientes %}
+          <tr>
+              <td>{{ cliente.nome }}</td>
+              <td>{{ cliente.tipo }}</td>
+              <td>{{ cliente.consumo }}</td>
+              <td>{{ cliente.energia_alocada }}</td>
+              <td>{{ cliente.status }}</td>
+          </tr>
+      {% endfor %}
+    </table>
   </ul>
 </div>
 
