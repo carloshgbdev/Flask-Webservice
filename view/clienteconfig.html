@@ -36,8 +36,7 @@
     cursor: pointer;
   }
 
-  .sidebar ul li:hover,
-  .sidebar ul li.active {
+  .sidebar ul li:hover {
     background-color: #0056b3; /* A darker blue for hover effect */
   }
 
@@ -171,9 +170,9 @@
 <div class="sidebar">
   <h2>Logo</h2>
   <ul>
-    <li>Home</li>
-    <li>Clientes</li>
-    <li class="active">Settings</li>
+    <li><a href="{{ url_for('pagina_cliente') }}">Home</a></li>
+    <li><a href="{{ url_for('filtro_clientes') }}">Clientes</a></li>
+    <li><a href="{{ url_for('cliente_config') }}">Configurações</a></li>
   </ul>
 </div>
 

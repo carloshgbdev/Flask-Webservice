@@ -146,27 +146,27 @@ def sobre_nos():
 def contato():
     return render_template('contato.html')
 
-@app.route('/paginacliente', methods=['GET'])
-def paginacliente():
+@app.route('/pagina-cliente', methods=['GET'])
+def pagina_cliente():
     return render_template('paginacliente.html')
 
-@app.route('/paginacliente/clienteconfig', methods=['GET', 'POST'])
-def clienteconfig():
+@app.route('/pagina-cliente/cliente-config', methods=['GET', 'POST'])
+def cliente_config():
     return render_template('clienteconfig.html')
 
-@app.route('/paginacliente/adicaoclientes', methods=['GET', 'POST'])
-def adicaoclientes():
+@app.route('/pagina-cliente/adicao-clientes', methods=['GET', 'POST'])
+def adicao_clientes():
     return render_template('adicaoclientes.html')
 
-@app.route('/paginacliente/filtroclientes', methods=['GET'])
-def filtroclientes():
+@app.route('/pagina-cliente/filtro-clientes', methods=['GET'])
+def filtro_clientes():
     return render_template('filtroclientes.html')
 
-@app.route('/paginacliente/filtroclientes/filtrados', methods=['GET'])
+@app.route('/pagina-cliente/filtro-clientes/filtrados', methods=['GET'])
 def filtrados():
     return render_template('filtrados.html')
 
-@app.route('/paginacliente/filtroclientes/fatura', methods=['GET'])
+@app.route('/pagina-cliente/filtro-clientes/fatura', methods=['GET'])
 def fatura():
     return render_template('fatura.html')
 
