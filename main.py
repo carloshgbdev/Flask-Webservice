@@ -1,6 +1,14 @@
+import firebase_admin
+
 from flask import Flask, request, render_template, make_response 
+from firebase_admin import credentials, firestore
 
 app = Flask(__name__, template_folder='view') 
+
+cred = credentials.Certificate("firebase.json")
+firebase_admin.initialize_app(cred)
+
+db = firestore.client()
 
 @app.route('/', methods=['GET'])
 def home():
@@ -29,14 +37,14 @@ def login():
         
         if (cnpj == 'admin' and key == 'admin'):
             resp = make_response(render_template('adm.html',
-                                                 var1=cnpj,
-                                                 var2=key))
+                                                 acess=cnpj,
+                                                 key=key))
             
             return resp
         else:
             resp = make_response(render_template('paginacliente.html',
-                                                 var1=cnpj,
-                                                 var2=key))
+                                                 acess=cnpj,
+                                                 key=key))
             
             return resp
         
@@ -78,7 +86,7 @@ def autenticacao():
         remember = "off"
     
     if (cnpj == 'admin' and key == 'admin'):
-        resp = make_response(render_template('adm.html', var1=cnpj, var2=key))
+        resp = make_response(render_template('adm.html', acess=cnpj, key=key))
         
         if (remember == 'on'):
             resp.set_cookie('cnpj', cnpj, max_age=30)
@@ -87,7 +95,7 @@ def autenticacao():
         
         return resp
     else:
-        return render_template('login.html', msg_err_autenticacao='Erro na autenticação.')
+        return render_template('login.html', msg_err_autenticacao='Erro na autenticação!')
     
 if __name__ == '__main__':
     app.run(debug=True)

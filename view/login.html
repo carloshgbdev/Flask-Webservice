@@ -147,6 +147,7 @@
 <div class="login-container">
   <div class="login-form">
     <h2>Não tem uma conta? Entre em contato conosco!</h2>
+    <p style="color: red">{{ msg_err_autenticacao }}</p>
     <form action="/login/autenticacao" method="POST">
       <label for="cnpj">CNPJ</label>
       <input type="text" id="cnpj" name="cnpj" required>
