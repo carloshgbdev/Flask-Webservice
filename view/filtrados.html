@@ -110,6 +110,23 @@
   .settings-icon:hover {
     color: #95a5a6; /* Light gray hover effect */
   }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 200px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
   
   /* Responsive adjustments */
   @media (max-width: 768px) {
@@ -164,19 +181,26 @@
     <img src="graph-placeholder.png" alt="Gráfico de Consumo">
   </div>
 
-  <div class="filter-form">
-    <h3>Fatura</h3>
-    <form action="filter-endpoint" method="POST">
-      <input type="text" name="invoice" placeholder="Fatura: 999">
-      <input type="text" name="consumption_peak" placeholder="Consumo Ponta(kWh): 999">
-      <input type="text" name="consumption_off_peak" placeholder="Consumo Fora Ponta(kWh): 999">
-      <input type="text" name="demand_peak" placeholder="Demanda Ponta(kW): 999">
-      <input type="text" name="demand_off_peak" placeholder="Demanda Fora Ponta(kW): 999">
-      <input type="date" name="start_date">
-      <input type="date" name="end_date">
-      <!-- More inputs can be added as needed -->
-      <button type="submit">Aplicar Filtros</button>
-    </form>
+  <div class="graph-container">
+    <ul class="client-list">
+      <table>
+        <tr>
+          <th><strong>Nome do Cliente</th>
+          <th>Tipo</th>
+          <th>Consumo</th>
+          <th>Energia alocada</th>
+          <th>Status</th>
+        </tr>
+        {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.tipo }}</td>
+                <td>{{ cliente.consumo }}</td>
+                <td>{{ cliente.energia_alocada }}</td>
+                <td>{{ cliente.status }}</td>
+            </tr>
+        {% endfor %}
+      </table>
   </div>
 </div>
 

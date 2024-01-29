@@ -146,7 +146,7 @@
 
 <div class="login-container">
   <div class="login-form">
-    <h2>Não tem uma conta? Entre em contato conosco!</h2>
+    <h2>Não tem uma conta?<a href="{{ url_for('contato') }}">Entre em contato conosco!</a></h2>
     <p style="color: red">{{ msg_err_autenticacao }}</p>
     <form action="/login/autenticacao" method="POST">
       <label for="cnpj">CNPJ</label>

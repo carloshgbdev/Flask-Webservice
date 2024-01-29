@@ -106,6 +106,9 @@
   .client-list {
     list-style: none;
   }
+  .mensagem-erro{
+    color: red;
+  }
 
   .client-item {
     display: flex;
@@ -183,10 +186,13 @@
     <h1>Clientes</h1>
     <a href="{{ url_for('adicao_clientes') }}" class="add-client-btn">+ Adicionar Cliente</a>
   </div>
+  <div class = 'mensagem-erro' >
+    <p>{{ mensagem }}<p>
+  </div>
 
-  <div class="filter-section">
-    <form action="/buscar" method="POST">
-      <input type="search" name="search" placeholder="Pesquisa CPF/CNPJ/Nome">
+  <div class="/pagina-cliente/filtro-clientes">
+    <form action="" method="POST">
+      <input type="search" name="search" placeholder='Nome/Cpf/Cnpj', value={{texto}} >
       <button type="submit">Pesquisar</button>
     </form>
   </div>
@@ -195,7 +201,7 @@
     <form action="/pagina-cliente/filtro-clientes" method="POST">
         <div class="filter-group">
             <label for="filtro">Filtro tipo</label>
-            <select id="filtro" name="filtro" placeholder="todos">
+            <select id="filtro" name="filtro">
                 <option value="" disabled selected hidden>Selecione um tipo</option>
                 <option value="individual">Individual</option>
                 <option value="industria">Indústria</option>

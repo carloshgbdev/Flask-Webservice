@@ -143,6 +143,15 @@ def obter_clientes_por_referencias(cnpj):
 
     return lista_de_clientes
 
+def filtra_clientes(filtro,parametro):
+    docs = db.collection('Clientes').where(parametro, '==', filtro).stream()
+    clientes_filtrados = []
+    for doc in docs:
+        clientes_filtrados.append(doc.to_dict())
+    
+    return clientes_filtrados
+
+
 @app.route('/', methods=['GET'])
 def home():
     return render_template('homepage.html')
@@ -314,22 +323,49 @@ def registra_cliente():
     
     return resp
 
-@app.route('/pagina-cliente/filtro-clientes', methods=['GET'])
-def filtro_clientes(msg=None):
+@app.route('/pagina-cliente/filtro-clientes', methods=['GET','POST'])
+def filtro_clientes():
     clientes = obter_clientes_por_referencias(session.get('cnpj'))
-    
-    if (msg == None):
+    filtro = request.form.get('filtro')
+    clientes_filtrados = filtra_clientes(filtro,'tipo')
+
+    if (filtro == 'todos' or filtro == None):
         return render_template('filtroclientes.html', clientes=clientes)
     else:
-        return render_template('filtroclientes.html', clientes=clientes, msg=msg)
+        return render_template('filtroclientes.html', clientes=clientes_filtrados)
 
-@app.route('/pagina-cliente/filtro-clientes/filtrados', methods=['GET'])
+@app.route('/pagina-cliente/filtro-clientes', methods=['GET','POST'])
 def filtrados():
+    
+   
     return render_template('filtrados.html')
 
 @app.route('/pagina-cliente/filtro-clientes/fatura', methods=['GET'])
 def fatura():
     return render_template('fatura.html')
+
+
+@app.route('/buscar', methods=['POST'])
+def buscar_cliente():
+    clientes = obter_clientes_por_referencias(session.get('cnpj'))
+    nome_cliente = request.form.get('search')
+    texto = nome_cliente
+    if nome_cliente.isnumeric():
+        filtro = 'cpf_cnpj'
+    else:
+        filtro = 'nome'
+
+    print(nome_cliente)
+    clientes_filtrados = filtra_clientes(nome_cliente,filtro)
+    if clientes_filtrados:
+        mensagem = ''
+        return render_template('pesquisaclientes.html', clientes=clientes_filtrados,mensagem=mensagem,texto=texto)
+    else:
+        mensagem = "Cliente não encontrado."
+        return render_template('pesquisaclientes.html', clientes=clientes,mensagem=mensagem,texto=texto)
+    
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
