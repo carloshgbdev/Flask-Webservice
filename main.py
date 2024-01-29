@@ -34,6 +34,22 @@ def adicionar_empresa_cliente(nome, tipo, rua, cep, complemento, cnpj, producao,
         'consumo': consumo,
         'status': 'Ativo'
     })
+    
+def adicionar_contato(first_name, last_name, company_name, company_email, company_role, state, comments, privacy):
+    contato_ref = db.collection('Contato')
+    # O Firestore criará automaticamente um ID único para cada novo documento
+    contato_ref = contato_ref.document()
+
+    contato_ref.set({
+        'first-name': first_name,
+        'last-name': last_name,
+        'company-name': company_name,
+        'company-email': company_email,
+        'company-role': company_role,
+        'state': state,
+        'comments': comments,
+        'privacy': privacy
+    })
 
 def adicionar_cliente(cnpj, nome, tipo, rua, cep, complemento, cpf_cnpj, telefone, consumo, energia_alocada):
     clientes_ref = db.collection('Clientes')
@@ -179,8 +195,9 @@ def autenticacao():
     else:
         try:
             empresas = busca_colecao('Empresas Clientes')
+
             
-            for empresa in empresas:
+            for empresa in empresas:        
                 if (cnpj == empresa['cnpj'] and key == empresa['acess']):
                     session['cnpj'] = cnpj
                     session['key'] = key
@@ -190,7 +207,7 @@ def autenticacao():
                         resp.set_cookie('key', key, max_age=30)
                         resp.set_cookie('autenticado', 'true', max_age=30)
                     
-                    resp = make_response(render_template('paginacliente.html', acess=cnpj, key=key))
+                    resp = make_response(render_template('paginacliente.html', acess=key, key=cnpj))
                     return resp
                 
                 return render_template('login.html', msg_err_autenticacao='CNPJ ou chave de acesso incorreta!')
@@ -232,8 +249,32 @@ def sobre_nos():
     return render_template('sobrenos.html')
 
 @app.route('/contato', methods=['GET', 'POST'])
-def contato():
+def contato(msg=None):
     return render_template('contato.html')
+
+@app.route('/contato/adiciona-contato', methods=['POST'])
+def adiciona_contato():
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    company_name = request.form['company_name']
+    company_email = request.form['company_email']
+    company_role = request.form['company_role']
+    state = request.form['state'] # Arrumar aqui
+    comments = request.form['comments']
+    privacy = request.form['privacy']
+    
+    try:
+        adicionar_contato(first_name = first_name, last_name = last_name, 
+                          company_name = company_name, company_email = company_email,
+                          company_role = company_role, state = state,
+                          comments = comments, privacy = privacy) #Arrumar aqui
+        
+        resp = make_response(contato(msg="<p style=\"color: green\">Contato adicionado com sucesso!</p>"))
+        
+        return resp
+    except:
+        return contato(msg="<p style=\"color: red\">Erro ao adicionar o contato</p>")
+
 
 @app.route('/pagina-cliente', methods=['GET'])
 def pagina_cliente():
