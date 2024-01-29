@@ -18,7 +18,7 @@
     color: white;
     padding: 15px;
     height: 100vh;
-    width: 250px;
+    width: 200px;
     position: fixed;
   }
 
@@ -184,42 +184,44 @@
     <a href="{{ url_for('adicao_clientes') }}" class="add-client-btn">+ Adicionar Cliente</a>
   </div>
 
-  <div class="search-section">
-    <form action="search-endpoint" method="POST">
+  <div class="filter-section">
+    <form action="/buscar" method="POST">
       <input type="search" name="search" placeholder="Pesquisa CPF/CNPJ/Nome">
       <button type="submit">Pesquisar</button>
     </form>
   </div>
 
   <div class="filter-section">
-    <form action="filter-endpoint" method="POST">
-      <div class="filter-group">
-        <label for="region">Filtro região</label>
-        <select id="region" name="region">
-          <option value="">Selecione uma região</option>
-          <!-- Add region options here -->
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="type">Filtro tipo</label>
-        <select id="type" name="type">
-          <option value="">Selecione um tipo</option>
-          <!-- Add type options here -->
-        </select>
-      </div>
-      <div class="filter-group">
-        <button type="submit">Aplicar Filtros</button>
-      </div>
+    <form action="/pagina-cliente/filtro-clientes" method="POST">
+        <div class="filter-group">
+            <label for="filtro">Filtro tipo</label>
+            <select id="filtro" name="filtro" placeholder="todos">
+                <option value="" disabled selected hidden>Selecione um tipo</option>
+                <option value="individual">Individual</option>
+                <option value="industria">Indústria</option>
+                <option value="business">Comércio</option>
+                <option value="todos">Todos</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <button type="submit">Aplicar Filtros</button>
+        </div>
     </form>
-  </div>
+   </div>
+
+
+
+
+
 
   <ul class="client-list">
     <table>
       <tr>
-        <th><strong>Nome do Cliente</strong> - tipo</th>
-        <th>consumo</th>
-        <th>producao</th>
-        <th>status</th>
+        <th><strong>Nome do Cliente</th>
+        <th>Tipo</th>
+        <th>Consumo</th>
+        <th>Energia alocada</th>
+        <th>Status</th>
       </tr>
       {% for cliente in clientes %}
           <tr>
