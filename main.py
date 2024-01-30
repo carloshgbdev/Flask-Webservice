@@ -2,8 +2,8 @@ import firebase_admin
 import random
 import os
 
-from flask import Flask, request, render_template, make_response, session
-from firebase_admin import credentials, firestore
+from flask import Flask, request, render_template, make_response, session, redirect, url_for
+from firebase_admin import credentials, firestore, auth
 
 app = Flask(__name__, template_folder='view') 
 app.secret_key = os.urandom(24)
@@ -164,7 +164,7 @@ def login():
     if (autenticado == 'true'):
         cnpj = cookies.get('cnpj')
         key = cookies.get('key')
-        
+            
         session['cnpj'] = cnpj
         session['key'] = key
         
@@ -206,8 +206,12 @@ def autenticacao():
             empresas = busca_colecao('Empresas Clientes')
 
             
-            for empresa in empresas:        
-                if (cnpj == empresa['cnpj'] and key == empresa['acess']):
+            for empresa in empresas:   
+                print(cnpj)
+                print(empresa['cnpj'])     
+                print(key)
+                print(empresa['acess'])
+                if (cnpj == empresa['cnpj'] and key == str(empresa['acess'])):
                     session['cnpj'] = cnpj
                     session['key'] = key
         
@@ -216,13 +220,24 @@ def autenticacao():
                         resp.set_cookie('key', key, max_age=30)
                         resp.set_cookie('autenticado', 'true', max_age=30)
                     
-                    resp = make_response(render_template('paginacliente.html', acess=key, key=cnpj))
+                    resp = make_response(render_template('paginacliente.html', acess=cnpj, key=key))
                     return resp
-                
-                return render_template('login.html', msg_err_autenticacao='CNPJ ou chave de acesso incorreta!')
+
+            return render_template('login.html', msg_err_autenticacao='CNPJ ou chave de acesso incorreta!')
         except:
             return render_template('login.html', msg_err_autenticacao='Erro na autenticação!')
     
+def busca_id_documento_pelo_cnpj(cnpj):
+    # Consultar a coleção para obter o documento com o CNPJ correspondente
+    query_ref = db.collection("Empresas Clientes").where('cnpj', '==', cnpj).limit(1)
+    resultados = query_ref.stream()
+
+    # Obter o ID do documento a partir dos resultados da consulta
+    for doc in resultados:
+        # Retornar o ID do documento
+        return doc.id
+    return None  # Se não encontrar nenhum documento, retorna None
+
 @app.route('/adm', methods=['GET', 'POST'])
 def adm(msg=None, acess='admin', key='admin'):
     empresas = busca_colecao('Empresas Clientes')
@@ -285,13 +300,56 @@ def adiciona_contato():
         return contato(msg="<p style=\"color: red\">Erro ao adicionar o contato</p>")
 
 
-@app.route('/pagina-cliente', methods=['GET'])
+@app.route('/pagina-cliente', methods=['GET', 'POST'])
 def pagina_cliente():
     return render_template('paginacliente.html')
 
 @app.route('/pagina-cliente/cliente-config', methods=['GET', 'POST'])
-def cliente_config():
-    return render_template('clienteconfig.html')
+def cliente_config(msg=None):   
+    return render_template('clienteconfig.html', msg=msg)
+
+@app.route('/pagina-cliente/cliente-config/deletar-conta', methods=['POST'])
+def deletar_conta():
+    document_id = busca_id_documento_pelo_cnpj(session.get('cnpj'))  # Substitua pelo ID do documento a ser excluído
+    try:
+        # Use o Firestore para excluir o documento
+        db.collection('Empresas Clientes').document(document_id).delete()
+        # Redirecione o usuário para a página de logout ou outra página apropriada
+        return redirect(url_for('home'))
+    except Exception as e:
+        # Lide com erros ou exceções aqui, por exemplo, exibir uma mensagem de erro
+        return "Erro ao excluir conta: " + str(e)
+
+# @app.route('/pagina-cliente/cliente-config/atualizar', methods=['POST'])
+# def atualizar_configuracoes():
+#     print("Entrou em atualizar")
+#     document_id = busca_id_documento_pelo_cnpj(session.get('cnpj'))
+#     doc_ref = db.collection('Empresas Clientes').document(document_id)
+
+#     # Dados originais do documento
+#     doc_original = doc_ref.get().to_dict()
+
+#     # Dados para atualizar
+#     dados_atualizados = {
+#         'nome': request.form['name'] if 'name' in request.form and request.form['name'] else doc_original['nome'],
+#         'cnpj': request.form['cnpj'] if 'cnpj' in request.form and request.form['cnpj'] else doc_original['cnpj'],
+#         'email': request.form['email'] if 'email' in request.form and request.form['email'] else doc_original['email'],
+#         'date': request.form['date'] if 'date' in request.form and request.form['date'] else doc_original['date'],
+#         'country': request.form['country'] if 'country' in request.form and request.form['country'] else doc_original['country'],
+#         'cep': request.form['cep'] if 'cep' in request.form and request.form['cep'] else doc_original['cep'],
+#         'state': request.form['state'] if 'state' in request.form and request.form['state'] else doc_original['state'],
+#         'city': request.form['city'] if 'city' in request.form and request.form['city'] else doc_original['city'],
+#         'neighborhood': request.form['neighborhood'] if 'neighborhood' in request.form and request.form['neighborhood'] else doc_original['neighborhood'],
+#         'rua': request.form['street'] if 'street' in request.form and request.form['street'] else doc_original['street'],
+#         'complement': request.form['complement'] if 'complement' in request.form and request.form['complement'] else doc_original['complement'],
+#         'acess': request.form['new-password'] if 'new-password' in request.form and request.form['new-password'] == request.form.get('confirm-password', '') else doc_original['acess']
+#     }
+
+#     # Atualiza o documento apenas com os campos fornecidos
+#     doc_ref.update(dados_atualizados)
+
+
+
 
 @app.route('/pagina-cliente/adicao-clientes', methods=['GET', 'POST'])
 def adicao_clientes(msg=None):

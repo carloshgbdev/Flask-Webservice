@@ -259,18 +259,20 @@
           <label for="theme">Tema</label>
           <!-- Add theme selection options here if needed -->
         </div>
-        <div>
-          <button type="submit">Salvar</button>
-        </div>
+        <!--form action="/pagina-cliente/cliente-config/atualizar" method="POST" -->
+          <div>
+            <button type="submit">Salvar</button>
+          </div>
+        <!--/form-->
         <div>
           <a href="#">Suporte e Privacidade</a>
         </div>
         <div>
-          <a href="#">Log out</a>
+          <a href="{{ url_for('home') }}">Log out</a>
         </div>
-        <div>
-          <a href="#">Deletar conta</a>
-        </div>
+        <form method="POST" action="{{ url_for('/pagina-cliente/cliente-config/deletar_conta') }}">
+          <button type="submit" onclick="return confirm('Tem certeza de que deseja excluir sua conta? Esta ação é irreversível.');">Deletar Conta</button>
+        </form>        
       </form>
     </div>
   </div>
